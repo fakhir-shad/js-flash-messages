@@ -18,5 +18,12 @@
   "homepage": "https://github.com/fakhir-shad/js-flash-messages#readme",
   "dependencies": {
     "js-cookie": "^2.2.0"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Muaaz Rafi",
+      "email": "muaaz.rafi@virtual-force.com",
+      "url": "https://github.com/muaaz-vf"
+    }
+  ]
 }
