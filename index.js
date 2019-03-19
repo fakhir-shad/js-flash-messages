@@ -39,3 +39,5 @@ exports.get = () => {
     return flashes;
   }
 };
+
+return exports;
