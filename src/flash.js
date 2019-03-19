@@ -38,4 +38,4 @@ const get = () => {
   }
 };
 
-return { create: create, get: get };
+module.exports = { create: create, get: get };
