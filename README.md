@@ -15,7 +15,7 @@ npm install js-flash-message --save
 #### First import the library
 
 ```
-const Flash = require('js-flash-message');
+import Flash from 'js-flash-message'
 
 ```
 
