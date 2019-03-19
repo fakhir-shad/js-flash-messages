@@ -1,12 +1,12 @@
 var Cookies = require("js-cookie");
 
-function create(flash = {}) {
+exports.create = function(flash = {}) {
   if (Object.values(flash).filter(obj => obj).length > 0) {
     var name = uniqueName();
     storeName(name);
     Cookies.set(name, flash);
   }
-}
+};
 
 function uniqueName(name = getName()) {
   return Cookies.get(name) === undefined ? name : uniqueName(getName());
@@ -23,7 +23,7 @@ function storeName(name) {
   Cookies.set("jsFlashNames", names);
 }
 
-function get() {
+exports.get = function() {
   var storedFlash = Cookies.getJSON("jsFlashNames");
   if (storedFlash === undefined) {
     return {};
@@ -36,6 +36,4 @@ function get() {
     Cookies.remove("jsFlashNames");
     return flashes;
   }
-}
-
-module.exports = { create, get };
+};
