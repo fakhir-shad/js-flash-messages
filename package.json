@@ -1,6 +1,6 @@
 {
   "name": "js-flash-message",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple javascript library to handle flash messages via Cookies",
   "main": "index.js",
   "scripts": {
