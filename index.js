@@ -2,41 +2,42 @@
 
 var Cookies = require("js-cookie");
 
-function uniqueName(name = getName()) {
-  return Cookies.get(name) === undefined ? name : uniqueName(getName());
-}
-
-function getName() {
-  return `jsFlash-${Date.now()}`;
-}
-
-function storeName(name) {
-  var storedNames = Cookies.getJSON("jsFlashNames");
-  var names = storedNames === undefined ? [] : storedNames;
-  names.push(name);
-  Cookies.set("jsFlashNames", names);
-}
-
-module.exports = {
-  create: function(flash = {}) {
-    if (Object.values(flash).filter(obj => obj).length > 0) {
-      var name = uniqueName();
-      storeName(name);
-      Cookies.set(name, flash);
-    }
-  },
-  get: function() {
-    var storedFlash = Cookies.getJSON("jsFlashNames");
-    if (storedFlash === undefined) {
-      return {};
-    } else {
-      var flashes = storedFlash.map(function(flashName) {
-        var flash = Cookies.getJSON(flashName);
-        Cookies.remove(flashName);
-        return flash;
-      });
-      Cookies.remove("jsFlashNames");
-      return flashes;
-    }
+const create = (flash = {}) => {
+  if (Object.values(flash).filter(obj => obj).length > 0) {
+    const name = uniqueName();
+    storeName(name);
+    Cookies.set(name, flash);
   }
 };
+
+const uniqueName = (name = getName()) => {
+  return Cookies.get(name) === undefined ? name : uniqueName(getName());
+};
+
+const getName = () => {
+  return `jsFlash-${Date.now()}`;
+};
+
+const storeName = name => {
+  const storedNames = Cookies.getJSON("jsFlashNames");
+  const names = storedNames === undefined ? [] : storedNames;
+  names.push(name);
+  Cookies.set("jsFlashNames", names);
+};
+
+const get = () => {
+  const storedFlash = Cookies.getJSON("jsFlashNames");
+  if (storedFlash === undefined) {
+    return [];
+  } else {
+    const flashes = storedFlash.map(flashName => {
+      const flash = Cookies.getJSON(flashName);
+      Cookies.remove(flashName);
+      return flash;
+    });
+    Cookies.remove("jsFlashNames");
+    return flashes;
+  }
+};
+
+module.exports = Flash = { create, get };
