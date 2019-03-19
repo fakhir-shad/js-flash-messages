@@ -1,3 +1,5 @@
+"use strict";
+
 var Cookies = require("js-cookie");
 
 function uniqueName(name = getName()) {
