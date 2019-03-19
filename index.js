@@ -1,8 +1,8 @@
-"use strict";
+const exports = (module.exports = {});
 
-var Cookies = require("js-cookie");
+const Cookies = require("js-cookie");
 
-const create = (flash = {}) => {
+exports.create = (flash = {}) => {
   if (Object.values(flash).filter(obj => obj).length > 0) {
     const name = uniqueName();
     storeName(name);
@@ -25,7 +25,7 @@ const storeName = name => {
   Cookies.set("jsFlashNames", names);
 };
 
-const get = () => {
+exports.get = () => {
   const storedFlash = Cookies.getJSON("jsFlashNames");
   if (storedFlash === undefined) {
     return [];
@@ -39,5 +39,3 @@ const get = () => {
     return flashes;
   }
 };
-
-module.exports = Flash = { create, get };
